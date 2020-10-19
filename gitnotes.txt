@@ -1,0 +1,38 @@
+git notes
+
+git init
+- create a git repository using current folder
+
+git status
+- check git status (changes to be commited)
+
+git add
+- add a file to ready to commit
+
+git add .
+- add all file in current directory into the repository
+
+git config --global user.name "username"
+
+git config --global user.email "email"
+
+git commit -m "comment"
+- submit to the repository
+
+.gitignore
+- add this file to the repository directory to let git ignore specific files 
+	under the repository directory
+- file that has been tracked won't be ignored even after the file was added 
+	to the gitignore
+
+git rm --cached [filename]
+- to stop git to track a file untrack a file
+
+git remote add origin [web-location]
+- add a source to push
+
+git push --set-upstream origin [branch name]
+- push repository to web repo
+
+git config --global credential.helper store
+- let git remember username and password
