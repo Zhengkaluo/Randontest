@@ -1,46 +1,134 @@
+          _ __                 __     
+   ____ _(_) /_   ____  ____  / /____ 
+  / __ `/ / __/  / __ \/ __ \/ __/ _ \
+ / /_/ / / /_   / / / / /_/ / /_/  __/
+ \__, /_/\__/  /_/ /_/\____/\__/\___/ 
+/____/                                
 
- _   _       _                                  _ _   
-| \ | | ___ | |_ ___  ___    ___  _ __     __ _(_) |_ 
-|  \| |/ _ \| __/ _ \/ __|  / _ \| '_ \   / _` | | __|
-| |\  | (_) | ||  __/\__ \ | (_) | | | | | (_| | | |_ 
-|_| \_|\___/ \__\___||___/  \___/|_| |_|  \__, |_|\__|
-                                          |___/       
-
-git notes
 
 git init
-- create a git repository using current folder
+	- create a git repository using current folder
 
 git status
-- check git status (changes to be commited)
+	- check git status (changes to be commited)
 
 git add
-- add a file to ready to commit
+	- add a file to ready to commit
 
 git add .
-- add all file in current directory into the repository
+	- add all file in current directory into the repository
+
+git commit -m "comment"
+	- submit to the repository
+
+git rm --cached [filename]
+	- remove a file from staging area (or called index)
+	  to stop git to track a file
+
+git ls-files
+	- shows files in staging area
+
+git log
+	- log about commits
+
+git log --online
+	- shows brief info about log
+
+git log --reverse
+	- shows log in reverse order
+
+git show [identifier / HEAD pointer]
+	- check info about a commit
+		-- check commit using identifier: git show [identifier]
+		-- check commit using HEAD pointer:
+
+			--- as HEAD points to master use
+				*git show HEAD* to check the last commit
+
+			--- to check commit before HEAD use
+				*git show HEAD~[steps to go back]*
+				e.g. *git show HEAD~1* will shows commit identified by 5e0930d
+
+			+--- sample ----------------------------------------------------------+
+			|	9bcd522 (HEAD -> master, origin/master) add invoice of sth        |
+			|	5e0930d add another image                                         |
+			|	573be8a send pictures to phone                                    |
+			|	d4ed5b0 Merge branch 'master' of https://github.com/xxxxxx/docs   |
+			|	f1c517c add ics hw9                                               |
+			|	ecd608d update vimNotes                                           |
+			+---------------------------------------------------------------------+
+
+	+------ sample output of git show -----------------------------------+
+	|                                                                    |
+	|	commit eef9557feccd6ace334f8732b45bb3304a139eba                  |
+	|	Author: nong10 <nong10w@outlook.com>                             |
+	|	Date:   Tue Oct 27 19:29:49 2020 +0100                           |
+	|                                                                    |
+	|		add command to set editor                                    |
+	|                                                                    |
+	|	diff --git a/notes/gitnotes.txt b/notes/gitnotes.txt             |
+	|	index 362c139..04ad484 100644                                    |
+	|	--- a/notes/gitnotes.txt                                         |
+	|	+++ b/notes/gitnotes.txt                                         |
+	|	@@ -36,3 +36,6 @@ git push --set-upstream origin [branch name]   |
+	|                                                                    |
+	|	 git config --global credential.helper store                     |
+	|	 - let git remember username and password                        |
+	|	+                                                                |
+	|	+git config --global core.editor "vim"                           |
+	|	+- change default editor for commit.                             |
+	|                                                                    |
+	+--------------------------------------------------------------------+
+
+git show [identifier/HEAD pointer]:[path to a file]
+	- show the exact version of a file stored in a commit
+	   e.g. *git show HEAD~1:.gitignore*
+
+git ls-tree [identifier/HEAD pointer]
+	- show all files and directories in a commit
+
+git restore --staged [optional file path]
+	- unstage changes in staging area
+		-- unstage all files 
+		   git restore --staged
+		-- unstage files 
+		   git restore --staged [path/pattern]
+		   e.g. git restore --staged file1.txt file2.txt *.o
+
+==== configs ====
+
+.gitignore
+	- add this file to the repository directory to let git ignore specific files 
+		under the repository directory
+	- file that has been tracked won't be ignored even after the file was added 
+		to the gitignore
 
 git config --global user.name "username"
 
 git config --global user.email "email"
 
-git commit -m "comment"
-- submit to the repository
-
-.gitignore
-- add this file to the repository directory to let git ignore specific files 
-	under the repository directory
-- file that has been tracked won't be ignored even after the file was added 
-	to the gitignore
-
-git rm --cached [filename]
-- to stop git to track a file untrack a file
-
 git remote add origin [web-location]
-- add a source to push
+	- add a source to push
 
 git push --set-upstream origin [branch name]
-- push repository to web repo
+	- push repository to web repo
+	! this might be depricated
 
 git config --global credential.helper store
-- let git remember username and password
+	- let git remember username and password
+	- git will remember next username and password input
+
+git config --global core.editor "vim"
+	- change default editor for commit.
+
+git config --global core.editor "code --wait"
+	- set editor as vscode
+		--wait 			-- let terminal wait untill vscode close the new instance
+
+git config --global -e
+	- edit global settings in default editor
+
+git config --global core.autocrlf input
+	- handle end of lines (which I have no clue)
+	- use this option under bsd and linux 
+
